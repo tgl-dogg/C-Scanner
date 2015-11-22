@@ -116,6 +116,11 @@ int main(int argc, char *argv[]) {
 		if (remove_comment(c)) { 
 			continue;
 		}
+
+		/* Verifica se é uma string e faz o parse correto dela. */
+		if (get_string(c)) {
+			continue;
+		}
 	}
 
 	fclose(input);
