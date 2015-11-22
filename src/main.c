@@ -19,6 +19,7 @@
 
 int fpeek(); /* Retorna o primeiro char do arquivo de entrada sem removê-lo do buffer. */
 int get_number(char c); /* Remove um número inteiro ou real de até 16 dígitos do arquivo de entrada. */
+int get_string(char c); /* Remove uma string do arquivo de entrada que esteja envolta de aspas simples ou duplas. */
 int remove_comment(char c); /* Remove comentários do arquivo de entrada que estejam no formato especificado. */
 int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
 
@@ -148,6 +149,66 @@ int remove_comment(char c) {
 	}
 
 	return 0;	
+}
+
+int get_string(char c) {
+	int x, i = 0, size = 100;
+	char last_char = c;
+	bool is_simple = (c == '\''); // Indica se a string começa com aspas simples.
+	bool is_double = (c == '\"'); // Indica se a string começa com aspas duplas.
+	bool is_scaped = false; // Permite ignorar caracteres escapados, como \" ou \' que não podem terminar a string.
+	char *str_buffer = (char *) malloc(size * sizeof(char));
+
+	// Verifica se é uma string mesmo.
+	if (!is_simple && !is_double) {
+		return 0;
+	}
+
+	// Coloca a abertura de aspas no arquivo de saída.
+	fputc(c, output);
+
+	while (CAN_READ_FILE) {
+		c = (char) x;
+		fputc(c, output);
+		
+		// Realoca o buffer para a string.
+		if (i >= (size-1)) {
+			size += 100;
+			str_buffer = (char *) realloc(str_buffer, size * sizeof(char));
+		}		
+
+		// Verifica se o próximo caractere está escapado, como \" ou \'.
+		is_scaped = (last_char == '\\');
+
+		// Verifica se a String está acabando exatamente como começou, aspas simples ou duplas.
+		if (!is_scaped && ((is_simple && c == '\'') || (is_double && c == '\"'))) {
+			str_buffer[i] = '\0';
+
+			// Coloca o tokenCode e value da string no arquivo de saída.
+			fprintf(output, STR_TOKEN_CODE);
+			fprintf(output, "%d", TOKEN_CODE_STRING);
+			fprintf(output, STR_VALUE);
+			fputs(str_buffer, output);
+			
+			// Pula linha no arquivo de saída.
+			fputc('\n', output);
+
+			free(str_buffer);
+			return 1;
+		}
+
+		/* Só coloca a string no buffer após verificar se é o fim dela,
+		assim evitar colocar as aspas finais na representação do value. */
+		str_buffer[i++] = c;
+
+		// Se o último caractere foi escapado, então ele não é considerado na próxima iteração.
+		last_char = is_scaped? 0 : c;
+	}
+
+	// WARNING: a string começa mas não termina
+	fputs(" -- [malformed string]", output);
+	free(str_buffer);
+	return -1;
 }
 
 int get_number(char c) {
