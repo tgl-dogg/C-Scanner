@@ -111,6 +111,11 @@ int main(int argc, char *argv[]) {
 		if (isspace(c)) {
 			continue;
 		}
+
+		/* Verifica e remove conteúdo que esteja entre /* ... */
+		if (remove_comment(c)) { 
+			continue;
+		}
 	}
 
 	fclose(input);
