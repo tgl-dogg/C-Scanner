@@ -81,6 +81,11 @@ FILE *input;
 FILE *output;
 
 int main(int argc, char *argv[]) {
+	int x, token_code;
+	char c; /* variável para leitura caractere por caractere. */
+	char token[TOKEN_MAX_SIZE];
+	bool truncated = false;
+
 	if (argc < 3) {
 		printf("Poucos argumentos! Insira o nome do arquivo de entrada e do arquivo de saida.\n");
 		return 1;
@@ -97,6 +102,15 @@ int main(int argc, char *argv[]) {
 	if (!output) {
 		printf("Nao foi possivel criar o arquivo de saida!\n");
 		return 1;
+	}
+
+	while (CAN_READ_FILE) {
+		c = (char) x;
+
+		/* Pula caracteres de espaço (' ', '\t', '\v', etc.) */
+		if (isspace(c)) {
+			continue;
+		}
 	}
 
 	fclose(input);
