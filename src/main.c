@@ -81,7 +81,7 @@ FILE *input;
 FILE *output;
 
 int main(int argc, char *argv[]) {
-	int x, token_code;
+	int x, token_code, aux; /* auxiliar para leitura do arquivo de entrada. */
 	char c; /* variável para leitura caractere por caractere. */
 	char token[TOKEN_MAX_SIZE];
 	bool truncated = false;
