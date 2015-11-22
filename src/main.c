@@ -1,9 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
+#include <ctype.h>
 
+#define STR_TOKEN_CODE " => tokenCode = "
+#define STR_VALUE ", value = "
+#define CAN_READ_FILE (x = fgetc(input)) != EOF
+
+#define TOKEN_CODE_INT 40
+#define TOKEN_CODE_FLOAT 41
+#define TOKEN_CODE_STRING 42
 #define TOKEN_CODE_VARIABLE 69
 
+#define TOKEN_MAX_SIZE 65535
+
+#define true 1
+#define false 0
+
 int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
+
+typedef int bool;
 
 /* Associa uma palavra reservada a um tokenCode. */
 struct mapping {
