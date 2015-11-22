@@ -136,6 +136,12 @@ int main(int argc, char *argv[]) {
 		fprintf(output, STR_TOKEN_CODE);
 		fprintf(output, "%d", token_code);
 
+		/* Se for um código de variável ou função... */
+		if (token_code == TOKEN_CODE_VARIABLE) {
+			fprintf(output, STR_VALUE);
+			fputs(token, output);
+		}
+
 		/* Avisa caso a palavra tenha sido truncada */
 		if (truncated) {		
 			fputs(" -- [truncated]", output);	
