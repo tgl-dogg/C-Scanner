@@ -126,6 +126,22 @@ int main(int argc, char *argv[]) {
 		if (get_number(c)) {
 			continue;
 		}
+
+		/* Não é comentário, string ou número, deve ser uma palavra reservada ou variável. */
+		truncated = get_word(c, token) == -1;
+		token_code = get_token_code(token);
+
+		/* Coloca os dados do token no arquivo de saída. */
+		fputs(token, output);
+		fprintf(output, STR_TOKEN_CODE);
+		fprintf(output, "%d", token_code);
+
+		/* Avisa caso a palavra tenha sido truncada */
+		if (truncated) {		
+			fputs(" -- [truncated]", output);	
+		}
+
+		fputc('\n', output);
 	}
 
 	fclose(input);
