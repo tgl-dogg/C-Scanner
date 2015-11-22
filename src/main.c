@@ -121,6 +121,11 @@ int main(int argc, char *argv[]) {
 		if (get_string(c)) {
 			continue;
 		}
+
+		/* Verifica se é um número e faz o parse correto dele. */
+		if (get_number(c)) {
+			continue;
+		}
 	}
 
 	fclose(input);
