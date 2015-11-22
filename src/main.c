@@ -22,6 +22,7 @@ int get_number(char c); /* Remove um número inteiro ou real de até 16 dígitos
 int get_string(char c); /* Remove uma string do arquivo de entrada que esteja envolta de aspas simples ou duplas. */
 int remove_comment(char c); /* Remove comentários do arquivo de entrada que estejam no formato especificado. */
 int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
+int get_word(char c, char str[100]); /* Retorna uma palavra reservada, símbolo ou nome de variável/função do arquivo de entrada. */
 
 typedef int bool;
 
@@ -279,6 +280,62 @@ int get_number(char c) {
 	fputc('\n', output);
 
 	return is_float? 2 : 1;
+}
+
+int get_word(char c, char str[TOKEN_MAX_SIZE]) {
+	int x, i = 0;
+	char last_char = c;
+	bool is_alpha = isalpha(c); // É alfabético? (alpha != alphanumeric).
+	bool is_symbol = ispunct(c); // É um símbolo?
+	bool is_double_symbol = false; // Indica se o símbolo é composto (<=, >=, !=).
+
+	// Faz uma cópia do valor no argumento.
+	str[i++] = c;
+
+	while (CAN_READ_FILE) {
+		c = (char) x;
+
+		// Fim da palavra por caractere de espaço.
+		if (isspace(c)) {
+			str[i] = '\0';
+			return 1;
+		}
+
+		// Palavra grande demais.
+		if (i >= (TOKEN_MAX_SIZE-1)) {			
+			str[i] = '\0';
+			return -1;
+		}
+
+		// Trata os símbolos.
+		if (is_symbol) {
+			is_double_symbol = (last_char == '<' || last_char == '>' || last_char == '!') && (c == '=');
+
+			if (!is_double_symbol) {
+				ungetc(c, input);
+			} else {
+				str[i++] = c;
+			}
+
+			str[i] = '\0';
+			return 1;
+		}
+
+		// Trata palavras reservadas e variáveis.
+		if (is_alpha) {
+			// Variáveis podem ter nome alfanumérico, desde que comecem com letras.
+			if (!isalnum(c) && c != '_') {
+				str[i] = '\0';
+				ungetc(c, input);
+				return 1;
+			}
+		}
+
+		str[i++] = c;
+	}
+
+	// Se chegou aqui, era a palavra ou símbolo "final" do arquivo de entrada.
+	return 1;
 }
 
 int get_token_code(char *key) {
