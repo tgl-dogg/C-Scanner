@@ -18,6 +18,7 @@
 #define false 0
 
 int fpeek(); /* Retorna o primeiro char do arquivo de entrada sem removê-lo do buffer. */
+int get_number(char c); /* Remove um número inteiro ou real de até 16 dígitos do arquivo de entrada. */
 int remove_comment(char c); /* Remove comentários do arquivo de entrada que estejam no formato especificado. */
 int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
 
@@ -147,6 +148,76 @@ int remove_comment(char c) {
 	}
 
 	return 0;	
+}
+
+int get_number(char c) {
+	int x, i = 0;
+	char num[TOKEN_MAX_SIZE];
+	bool is_float = false; // Indica se é um número real ou inteiro.
+	bool already_has_dot = false; // Indica se já foi colocado um ponto decimal no arquivo.
+	bool truncate = false; // Indica se o número deve ser truncado por ter mais de 16 dígitos.
+
+	if (!isdigit(c)) {
+		return 0;
+	}
+
+	// Coloca o dígito no arquivo de saída e no vetor.
+	fputc(c, output);
+	num[i++] = c;
+
+	while (CAN_READ_FILE) {
+		c = (char) x;
+
+		// Valida se o próximo caractere lido é realmente um número, ou se deve ser truncado.
+		if (!isdigit(c) || truncate) {
+			/* Se não for um dígito, pode ser um '.' indicando um número real, 
+			desde que já não exista um ponto neste número. */
+			if (c != '.' || already_has_dot || truncate) {
+				break;
+			} else {
+				// Valida se o número já tem um ponto decimal ou não.
+				if (!is_float) {
+					is_float = true;
+				} else {
+					already_has_dot = true;
+				}
+			}
+		}
+
+		// Coloca o dígito no arquivo de saída e no vetor.
+		fputc(c, output);
+		num[i++] = c;
+
+		// Trunca o número aqui, o tamanho máximo é 16 caracteres.
+		if (i > 16) {
+			truncate = true;
+		}
+	}
+
+	// Termina a representação do número e devolve o último caractere lido para o buffer do arquivo.
+	num[i] = '\0';
+	ungetc(c, input);
+
+	// Coloca o tokenCode e o value do número no arquivo de saída.
+	fprintf(output, STR_TOKEN_CODE);
+	fprintf(output, "%d", is_float ? TOKEN_CODE_FLOAT : TOKEN_CODE_INT);
+	fprintf(output, STR_VALUE);
+	fputs(num, output);
+
+	// Se o número tinha dois pontos decimais, indica o erro.
+	if (already_has_dot) {		
+		fputs(" -- [double dot representation]", output);
+	}
+
+	// Se o número foi truncado, aponta o erro.
+	if (truncate) {
+		fputs(" -- [truncated]", output);		
+	}
+
+	// Pula linha no arquivo de saída.
+	fputc('\n', output);
+
+	return is_float? 2 : 1;
 }
 
 int get_token_code(char *key) {
