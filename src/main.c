@@ -18,6 +18,7 @@
 #define false 0
 
 int fpeek(); /* Retorna o primeiro char do arquivo de entrada sem removê-lo do buffer. */
+int remove_comment(char c); /* Remove comentários do arquivo de entrada que estejam no formato especificado. */
 int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
 
 typedef int bool;
@@ -105,6 +106,47 @@ int fpeek() {
     ungetc(x, input);
 
     return x;
+}
+
+int remove_comment(char c) {
+	int x;
+
+	// Verifica se começa com '/'
+	if (c != '/') {
+		return 0;
+	}
+
+	x = fpeek(input);
+	c = (char) x;
+
+	// Verifica se é o fim do arquivo
+	if (x == EOF) {
+		return 0;
+	}
+
+	// Verificamos se realmente começa com "/*"
+	if (c == '*') {
+		// Consome o caractere '*' do comentario.
+		fgetc(input);
+
+		// Começou um comentário, vamos consumí-lo até o fim dele ou do arquivo.
+		while (CAN_READ_FILE) {
+			c = (char) x;
+
+			// Testa se é o fim do comentário, isto é, se é do formato "*/"
+			if (c == '*' && ((char) fpeek(input)) == '/') {
+				// Consome o caractere '/' que lemos com fpeek;
+				x = fgetc(input);
+				return 1;
+			}
+		}
+
+		// WARNING: comentário aberto porém não fechado.
+		fputs(" -- [malformed commentary]", output);
+		return -1;
+	}
+
+	return 0;	
 }
 
 int get_token_code(char *key) {
