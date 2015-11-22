@@ -3,6 +3,8 @@
 
 #define TOKEN_CODE_VARIABLE 69
 
+int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
+
 /* Associa uma palavra reservada a um tokenCode. */
 struct mapping {
     char *keyword;
@@ -79,4 +81,22 @@ int main(int argc, char *argv[]) {
 	fclose(input);
 	fclose(output);
 	return 0;
+}
+
+int get_token_code(char *key) {
+    int i = 0;
+    char *name = mappings[i].keyword;
+
+    // Itera sobre a definição de mapeamento criada no vetor.
+    while (name) {
+    	// Pára quando encontra uma palavra reservada pré-definida.
+    	if (strcmp(name, key) == 0) {
+    		break;
+        }
+
+    	name = mappings[++i].keyword;
+    }
+
+    // Se não encontrar nada, assumimos que deve ser uma variável.
+    return mappings[i].token_code;
 }
