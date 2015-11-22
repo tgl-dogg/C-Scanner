@@ -17,6 +17,7 @@
 #define true 1
 #define false 0
 
+int fpeek(); /* Retorna o primeiro char do arquivo de entrada sem removê-lo do buffer. */
 int get_token_code(char *key); /* Retorna o tokenCode definido para a palavra reservada ou símbolo, ou devolve -1 para variáveis. */
 
 typedef int bool;
@@ -97,6 +98,13 @@ int main(int argc, char *argv[]) {
 	fclose(input);
 	fclose(output);
 	return 0;
+}
+
+int fpeek() {
+    int x = fgetc(input);
+    ungetc(x, input);
+
+    return x;
 }
 
 int get_token_code(char *key) {
