@@ -1,0 +1,18 @@
+/* Teste para calcular o menor de três números. */
+int a = 29;
+int b = 30;
+float c = -30.55555;
+string msg = 'lala "que isso novinha" lala';
+
+/* Testando */
+if (a < b and a < c)
+	msg = "A is the \"smallest\"";
+else if (b < a and b < c) 
+	msg = "B is the \"smallest\"";
+else
+	msg = "C is the \"smallest\"";
+
+string end = "Oloiro \\\"\\\""
+
+/* Fim do teste */
+return nil;

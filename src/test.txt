@@ -1,0 +1,62 @@
+int => tokenCode = 17
+a => tokenCode = 69, value = a
+= => tokenCode = 24
+29 => tokenCode = 40, value = 29
+; => tokenCode = 37
+int => tokenCode = 17
+b => tokenCode = 69, value = b
+= => tokenCode = 24
+30 => tokenCode = 40, value = 30
+; => tokenCode = 37
+float => tokenCode = 16
+c => tokenCode = 69, value = c
+= => tokenCode = 24
+- => tokenCode = 21
+30.55555 => tokenCode = 41, value = 30.55555
+; => tokenCode = 37
+string => tokenCode = 15
+msg => tokenCode = 69, value = msg
+= => tokenCode = 24
+'lala "que isso novinha" lala' => tokenCode = 42, value = lala "que isso novinha" lala
+; => tokenCode = 37
+if => tokenCode = 4
+( => tokenCode = 25
+a => tokenCode = 69, value = a
+< => tokenCode = 31
+b => tokenCode = 69, value = b
+and => tokenCode = 1
+a => tokenCode = 69, value = a
+< => tokenCode = 31
+c => tokenCode = 69, value = c
+) => tokenCode = 26
+msg => tokenCode = 69, value = msg
+= => tokenCode = 24
+"A is the \"smallest\"" => tokenCode = 42, value = A is the \"smallest\"
+; => tokenCode = 37
+else => tokenCode = 3
+if => tokenCode = 4
+( => tokenCode = 25
+b => tokenCode = 69, value = b
+< => tokenCode = 31
+a => tokenCode = 69, value = a
+and => tokenCode = 1
+b => tokenCode = 69, value = b
+< => tokenCode = 31
+c => tokenCode = 69, value = c
+) => tokenCode = 26
+msg => tokenCode = 69, value = msg
+= => tokenCode = 24
+"B is the \"smallest\"" => tokenCode = 42, value = B is the \"smallest\"
+; => tokenCode = 37
+else => tokenCode = 3
+msg => tokenCode = 69, value = msg
+= => tokenCode = 24
+"C is the \"smallest\"" => tokenCode = 42, value = C is the \"smallest\"
+; => tokenCode = 37
+string => tokenCode = 15
+end => tokenCode = 69, value = end
+= => tokenCode = 24
+"Oloiro \\\"\\\"" => tokenCode = 42, value = Oloiro \\\"\\\"
+return => tokenCode = 9
+nil => tokenCode = 6
+; => tokenCode = 37

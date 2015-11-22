@@ -1,0 +1,261 @@
+int => tokenCode = 17
+main => tokenCode = 69, value = main
+( => tokenCode = 25
+int => tokenCode = 17
+argc => tokenCode = 69, value = argc
+, => tokenCode = 36
+char => tokenCode = 69, value = char
+* => tokenCode = 22
+argv => tokenCode = 69, value = argv
+[ => tokenCode = 27
+] => tokenCode = 28
+) => tokenCode = 26
+{ => tokenCode = 29
+int => tokenCode = 17
+x => tokenCode = 69, value = x
+, => tokenCode = 36
+token_code => tokenCode = 69, value = token_code
+, => tokenCode = 36
+aux => tokenCode = 69, value = aux
+; => tokenCode = 37
+char => tokenCode = 69, value = char
+c => tokenCode = 69, value = c
+; => tokenCode = 37
+char => tokenCode = 69, value = char
+token => tokenCode = 69, value = token
+[ => tokenCode = 27
+TOKEN_MAX_SIZE => tokenCode = 69, value = TOKEN_MAX_SIZE
+] => tokenCode = 28
+; => tokenCode = 37
+bool => tokenCode = 69, value = bool
+truncated => tokenCode = 69, value = truncated
+= => tokenCode = 24
+false => tokenCode = 69, value = false
+; => tokenCode = 37
+if => tokenCode = 4
+( => tokenCode = 25
+argc => tokenCode = 69, value = argc
+< => tokenCode = 31
+3 => tokenCode = 40, value = 3
+) => tokenCode = 26
+{ => tokenCode = 29
+printf => tokenCode = 69, value = printf
+( => tokenCode = 25
+"Poucos argumentos! Insira o nome do arquivo de entrada e do arquivo de saida.\n" => tokenCode = 42, value = Poucos argumentos! Insira o nome do arquivo de entrada e do arquivo de saida.\n
+) => tokenCode = 26
+; => tokenCode = 37
+return => tokenCode = 9
+1 => tokenCode = 40, value = 1
+; => tokenCode = 37
+} => tokenCode = 30
+input => tokenCode = 69, value = input
+= => tokenCode = 24
+fopen => tokenCode = 69, value = fopen
+( => tokenCode = 25
+argv => tokenCode = 69, value = argv
+[ => tokenCode = 27
+1 => tokenCode = 40, value = 1
+] => tokenCode = 28
+, => tokenCode = 36
+"r" => tokenCode = 42, value = r
+) => tokenCode = 26
+; => tokenCode = 37
+output => tokenCode = 69, value = output
+= => tokenCode = 24
+fopen => tokenCode = 69, value = fopen
+( => tokenCode = 25
+argv => tokenCode = 69, value = argv
+[ => tokenCode = 27
+2 => tokenCode = 40, value = 2
+] => tokenCode = 28
+, => tokenCode = 36
+"w+" => tokenCode = 42, value = w+
+) => tokenCode = 26
+; => tokenCode = 37
+if => tokenCode = 4
+( => tokenCode = 25
+! => tokenCode = 69, value = !
+input => tokenCode = 69, value = input
+) => tokenCode = 26
+{ => tokenCode = 29
+printf => tokenCode = 69, value = printf
+( => tokenCode = 25
+"Nao foi possivel abrir o arquivo de entrada!\n" => tokenCode = 42, value = Nao foi possivel abrir o arquivo de entrada!\n
+) => tokenCode = 26
+; => tokenCode = 37
+return => tokenCode = 9
+1 => tokenCode = 40, value = 1
+; => tokenCode = 37
+} => tokenCode = 30
+if => tokenCode = 4
+( => tokenCode = 25
+! => tokenCode = 69, value = !
+output => tokenCode = 69, value = output
+) => tokenCode = 26
+{ => tokenCode = 29
+printf => tokenCode = 69, value = printf
+( => tokenCode = 25
+"Nao foi possivel criar o arquivo de saida!\n" => tokenCode = 42, value = Nao foi possivel criar o arquivo de saida!\n
+) => tokenCode = 26
+; => tokenCode = 37
+return => tokenCode = 9
+1 => tokenCode = 40, value = 1
+; => tokenCode = 37
+} => tokenCode = 30
+while => tokenCode = 11
+( => tokenCode = 25
+CAN_READ_FILE => tokenCode = 69, value = CAN_READ_FILE
+) => tokenCode = 26
+{ => tokenCode = 29
+c => tokenCode = 69, value = c
+= => tokenCode = 24
+( => tokenCode = 25
+char => tokenCode = 69, value = char
+) => tokenCode = 26
+x => tokenCode = 69, value = x
+; => tokenCode = 37
+if => tokenCode = 4
+( => tokenCode = 25
+isspace => tokenCode = 69, value = isspace
+( => tokenCode = 25
+c => tokenCode = 69, value = c
+) => tokenCode = 26
+) => tokenCode = 26
+{ => tokenCode = 29
+continue => tokenCode = 69, value = continue
+; => tokenCode = 37
+} => tokenCode = 30
+if => tokenCode = 4
+( => tokenCode = 25
+remove_comment => tokenCode = 69, value = remove_comment
+( => tokenCode = 25
+c => tokenCode = 69, value = c
+) => tokenCode = 26
+) => tokenCode = 26
+{ => tokenCode = 29
+continue => tokenCode = 69, value = continue
+; => tokenCode = 37
+} => tokenCode = 30
+if => tokenCode = 4
+( => tokenCode = 25
+get_string => tokenCode = 69, value = get_string
+( => tokenCode = 25
+c => tokenCode = 69, value = c
+) => tokenCode = 26
+) => tokenCode = 26
+{ => tokenCode = 29
+continue => tokenCode = 69, value = continue
+; => tokenCode = 37
+} => tokenCode = 30
+if => tokenCode = 4
+( => tokenCode = 25
+get_number => tokenCode = 69, value = get_number
+( => tokenCode = 25
+c => tokenCode = 69, value = c
+) => tokenCode = 26
+) => tokenCode = 26
+{ => tokenCode = 29
+continue => tokenCode = 69, value = continue
+; => tokenCode = 37
+} => tokenCode = 30
+truncated => tokenCode = 69, value = truncated
+= => tokenCode = 24
+get_word => tokenCode = 69, value = get_word
+( => tokenCode = 25
+c => tokenCode = 69, value = c
+, => tokenCode = 36
+token => tokenCode = 69, value = token
+) => tokenCode = 26
+= => tokenCode = 24
+= => tokenCode = 24
+- => tokenCode = 21
+1 => tokenCode = 40, value = 1
+; => tokenCode = 37
+token_code => tokenCode = 69, value = token_code
+= => tokenCode = 24
+get_token_code => tokenCode = 69, value = get_token_code
+( => tokenCode = 25
+token => tokenCode = 69, value = token
+) => tokenCode = 26
+; => tokenCode = 37
+fputs => tokenCode = 69, value = fputs
+( => tokenCode = 25
+token => tokenCode = 69, value = token
+, => tokenCode = 36
+output => tokenCode = 69, value = output
+) => tokenCode = 26
+; => tokenCode = 37
+fprintf => tokenCode = 69, value = fprintf
+( => tokenCode = 25
+output => tokenCode = 69, value = output
+, => tokenCode = 36
+STR_TOKEN_CODE => tokenCode = 69, value = STR_TOKEN_CODE
+) => tokenCode = 26
+; => tokenCode = 37
+fprintf => tokenCode = 69, value = fprintf
+( => tokenCode = 25
+output => tokenCode = 69, value = output
+, => tokenCode = 36
+"%d" => tokenCode = 42, value = %d
+, => tokenCode = 36
+token_code => tokenCode = 69, value = token_code
+) => tokenCode = 26
+; => tokenCode = 37
+if => tokenCode = 4
+( => tokenCode = 25
+token_code => tokenCode = 69, value = token_code
+= => tokenCode = 24
+= => tokenCode = 24
+TOKEN_CODE_VARIABLE => tokenCode = 69, value = TOKEN_CODE_VARIABLE
+) => tokenCode = 26
+{ => tokenCode = 29
+fprintf => tokenCode = 69, value = fprintf
+( => tokenCode = 25
+output => tokenCode = 69, value = output
+, => tokenCode = 36
+STR_VALUE => tokenCode = 69, value = STR_VALUE
+) => tokenCode = 26
+; => tokenCode = 37
+fputs => tokenCode = 69, value = fputs
+( => tokenCode = 25
+token => tokenCode = 69, value = token
+, => tokenCode = 36
+output => tokenCode = 69, value = output
+) => tokenCode = 26
+; => tokenCode = 37
+} => tokenCode = 30
+if => tokenCode = 4
+( => tokenCode = 25
+truncated => tokenCode = 69, value = truncated
+) => tokenCode = 26
+{ => tokenCode = 29
+fputs => tokenCode = 69, value = fputs
+( => tokenCode = 25
+" -- [truncated]" => tokenCode = 42, value =  -- [truncated]
+, => tokenCode = 36
+output => tokenCode = 69, value = output
+) => tokenCode = 26
+; => tokenCode = 37
+} => tokenCode = 30
+fputc => tokenCode = 69, value = fputc
+( => tokenCode = 25
+'\n' => tokenCode = 42, value = \n
+, => tokenCode = 36
+output => tokenCode = 69, value = output
+) => tokenCode = 26
+; => tokenCode = 37
+} => tokenCode = 30
+fclose => tokenCode = 69, value = fclose
+( => tokenCode = 25
+input => tokenCode = 69, value = input
+) => tokenCode = 26
+; => tokenCode = 37
+fclose => tokenCode = 69, value = fclose
+( => tokenCode = 25
+output => tokenCode = 69, value = output
+) => tokenCode = 26
+; => tokenCode = 37
+return => tokenCode = 9
+0 => tokenCode = 40, value = 0
+; => tokenCode = 37
+} => tokenCode = 30

@@ -1,0 +1,74 @@
+int main(int argc, string *argv[]) {
+	int x, token_code, aux; /* auxiliar para leitura do arquivo de entrada. */
+	string c; /* variável para leitura caractere por caractere. */
+	string token[TOKEN_MAX_SIZE];
+	bool truncated = false;
+
+	if (argc < 3) {
+		printf("Poucos argumentos! Insira o nome do arquivo de entrada e do arquivo de saida.\n");
+		return 1;
+	}
+
+	input = fopen(argv[1], "r");
+	output = fopen(argv[2], "w+");
+
+	if (!input) {
+		printf("Nao foi possivel abrir o arquivo de entrada!\n");
+		return 1;
+	}
+
+	if (!output) {
+		printf("Nao foi possivel criar o arquivo de saida!\n");
+		return 1;
+	}
+
+	while (CAN_READ_FILE) {
+		c = (string) x;
+
+		/* Pula caracteres de espaço (' ', '\t', '\v', etc.) */
+		if (isspace(c)) {
+			continue;
+		}
+
+		/* Verifica e remove conteúdo que esteja entre /* ... */
+		if (remove_comment(c)) { 
+			continue;
+		}
+
+		/* Verifica se é uma string e faz o parse correto dela. */
+		if (get_string(c)) {
+			continue;
+		}
+
+		/* Verifica se é um número e faz o parse correto dele. */
+		if (get_number(c)) {
+			continue;
+		}
+
+		/* Não é comentário, string ou número, deve ser uma palavra reservada ou variável. */
+		truncated = get_word(c, token) == -1;
+		token_code = get_token_code(token);
+
+		/* Coloca os dados do token no arquivo de saída. */
+		fputs(token, output);
+		fprintf(output, STR_TOKEN_CODE);
+		fprintf(output, "%d", token_code);
+
+		/* Se for um código de variável ou função... */
+		if (token_code == TOKEN_CODE_VARIABLE) {
+			fprintf(output, STR_VALUE);
+			fputs(token, output);
+		}
+
+		/* Avisa caso a palavra tenha sido truncada */
+		if (truncated) {		
+			fputs(" -- [truncated]", output);	
+		}
+
+		fputc('\n', output);
+	}
+
+	fclose(input);
+	fclose(output);
+	return 0;
+}

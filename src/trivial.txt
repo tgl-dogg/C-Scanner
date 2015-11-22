@@ -1,0 +1,39 @@
+int => tokenCode = 17
+float => tokenCode = 16
+string => tokenCode = 15
+nil => tokenCode = 7
+if => tokenCode = 4
+else => tokenCode = 3
+do => tokenCode = 2
+while => tokenCode = 12
+for => tokenCode = 5
+and => tokenCode = 1
+or => tokenCode = 9
+not => tokenCode = 8
+new => tokenCode = 6
+void => tokenCode = 11
+return => tokenCode = 10
++ => tokenCode = 20
+- => tokenCode = 21
+* => tokenCode = 22
+/ => tokenCode = 23
+( => tokenCode = 25
+) => tokenCode = 26
+[ => tokenCode = 27
+] => tokenCode = 28
+{ => tokenCode = 29
+} => tokenCode = 30
+< => tokenCode = 31
+<= => tokenCode = 33
+= => tokenCode = 24
+!= => tokenCode = 35
+> => tokenCode = 32
+>= => tokenCode = 34
+. => tokenCode = 38
+, => tokenCode = 36
+; => tokenCode = 37
+"Este teste é trivial" => tokenCode = 42, value = Este teste é trivial
+23 => tokenCode = 40, value = 23
+1010101010101010 => tokenCode = 40, value = 1010101010101010
+123456789.0 => tokenCode = 41, value = 123456789.0
+"Strings podem ser realmente muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, longas :)!" => tokenCode = 42, value = Strings podem ser realmente muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, muito, longas :)!
